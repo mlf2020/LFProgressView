@@ -4,9 +4,10 @@ This is a light HUD ,and easily to use
 
 GET START
 
- ![](http://github.com/mlf2020/LFProgressView/raw/master/snapshot/Snip20160608_20.png)
-![](http://github.com/mlf2020/LFProgressView/raw/master/snapshot/Snip20160608_21.png)
-![](http://github.com/mlf2020/LFProgressView/raw/master/snapshot/Snip20160608_22.png)
+ ![LFProgressView](http://github.com/mlf2020/LFProgressView/raw/master/LFProgressView/snapshot/Snip20160608_20.png)
+ 
+![LFProgressView](http://github.com/mlf2020/LFProgressView/raw/master/LFProgressView/snapshot/Snip20160608_21.png)
+![LFProgressView](http://github.com/mlf2020/LFProgressView/raw/master/LFProgressView/snapshot/Snip20160608_22.png)
  
  you can use the HUD like this :
  
