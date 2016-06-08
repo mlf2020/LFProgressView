@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     }
     
     func hide(){
+        
         LFProgressHUD.hideForView(self.view)
     }
 
