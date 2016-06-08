@@ -7,6 +7,6 @@ Pod::Spec.new do |spec|
   spec.authors      = { 'Meng Lingfeng' => '1162133023@qq.com' }
   spec.summary      = 'provide a very easy way to add HUD.'
   spec.source       = { :git => 'https://github.com/mlf2020/LFProgressView.git', :tag => 'v1.0.0' }
-  spec.source_files = "LFProgressView.swift"
+  spec.source_file  = "LFProgressHUD.swift"
   spec.framework    = 'UIKit'
 end
