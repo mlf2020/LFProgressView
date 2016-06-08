@@ -4,8 +4,6 @@ This is a light HUD ,and easily to use
 
 GET START
 
-snapshot
- 
  ![image](http://github.com/mlf2020/LFProgressView/raw/master/snapshot/Snip20160608_20.png)
 ![image](http://github.com/mlf2020/LFProgressView/raw/master/snapshot/Snip20160608_21.png)
 ![image](http://github.com/mlf2020/LFProgressView/raw/master/snapshot/Snip20160608_22.png)
