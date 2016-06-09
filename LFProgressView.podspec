@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |spec|
   spec.name         = 'LFProgressView'
-  spec.platform     = :ios
+  spec.platform     = :ios,'8.0'
   spec.version      = '1.0.0'
   spec.license      = { :type => 'MIT' }
   spec.homepage     = 'https://github.com/mlf2020/LFProgressView.git'
