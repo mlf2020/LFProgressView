@@ -158,6 +158,7 @@ class LFProgressHUD: UIView {
     init(withTrackColor : UIColor,backGroundColor backColor : UIColor,progressMode mode : LFProgressMode,containerView container : UIView!){
         
         super.init(frame: CGRectZero)
+        self.autoresizingMask = [.FlexibleBottomMargin,.FlexibleWidth,.FlexibleHeight,.FlexibleTopMargin,.FlexibleLeftMargin,.FlexibleRightMargin]
         self.trackColor = withTrackColor
         self.backGroundColor = backColor
         self.progressMode = mode
