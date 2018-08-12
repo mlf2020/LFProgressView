@@ -70,7 +70,13 @@ class LFProgressHUD: UIView {
     private var promptLabel = UILabel()
     private var sharpLayer = CAShapeLayer()
     private var indicatorView : UIView?
-    private var containerView = UIView()
+    lazy private var containerView : UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 5
+        view.layer.masksToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
      class func lastWindow() -> UIWindow!{
         let windows = UIApplication.shared.windows
@@ -114,6 +120,7 @@ class LFProgressHUD: UIView {
     
     class func hudInit(view container : UIView?,withMode mode : LFProgressMode)->LFProgressHUD{
     
+        hideForView(container)
         let innerContainer = container ?? lastWindow()
         let hud = LFProgressHUD.init(withTrackColor: UIColor.white, backGroundColor: UIColor.black.withAlphaComponent(0.5), progressMode: mode, containerView: innerContainer)
         return hud
@@ -152,14 +159,13 @@ class LFProgressHUD: UIView {
     init(withTrackColor : UIColor,backGroundColor backColor : UIColor,progressMode mode : LFProgressMode,containerView container : UIView!){
         
         super.init(frame: .zero)
+        super.init(frame: CGRectZero)
+        self.autoresizingMask = [.FlexibleBottomMargin,.FlexibleWidth,.FlexibleHeight,.FlexibleTopMargin,.FlexibleLeftMargin,.FlexibleRightMargin]
         self.trackColor = withTrackColor
         self.backGroundColor = backColor
         self.progressMode = mode
-        containerView.layer.cornerRadius = 5
-        containerView.layer.masksToBounds = true
         addSubview(containerView)
 
-        containerView.translatesAutoresizingMaskIntoConstraints = false
         self.frame = container.bounds
         container.addSubview(self)
         
