@@ -120,7 +120,7 @@ class LFProgressHUD: UIView {
     
     class func hudInit(view container : UIView?,withMode mode : LFProgressMode)->LFProgressHUD{
     
-        hideForView(container)
+        hideForView(view: container)
         let innerContainer = container ?? lastWindow()
         let hud = LFProgressHUD.init(withTrackColor: UIColor.white, backGroundColor: UIColor.black.withAlphaComponent(0.5), progressMode: mode, containerView: innerContainer)
         return hud
@@ -159,8 +159,7 @@ class LFProgressHUD: UIView {
     init(withTrackColor : UIColor,backGroundColor backColor : UIColor,progressMode mode : LFProgressMode,containerView container : UIView!){
         
         super.init(frame: .zero)
-        super.init(frame: CGRectZero)
-        self.autoresizingMask = [.FlexibleBottomMargin,.FlexibleWidth,.FlexibleHeight,.FlexibleTopMargin,.FlexibleLeftMargin,.FlexibleRightMargin]
+        self.autoresizingMask = [.flexibleBottomMargin,.flexibleWidth,.flexibleHeight,.flexibleTopMargin,.flexibleLeftMargin,.flexibleRightMargin]
         self.trackColor = withTrackColor
         self.backGroundColor = backColor
         self.progressMode = mode
