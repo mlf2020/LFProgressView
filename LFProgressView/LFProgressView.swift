@@ -52,10 +52,10 @@ class LFProgressHUD: UIView {
     //MARK:properties
     var trackColor : UIColor?{
         get{
-          return UIColor(CGColor: sharpLayer.strokeColor ?? UIColor.whiteColor().CGColor)
+            return UIColor(cgColor: sharpLayer.strokeColor ?? UIColor.white.cgColor)
         }
         set{
-           sharpLayer.strokeColor = newValue?.CGColor
+            sharpLayer.strokeColor = newValue?.cgColor
         }
     }
     var backGroundColor : UIColor?{
@@ -73,21 +73,20 @@ class LFProgressHUD: UIView {
     private var containerView = UIView()
     
      class func lastWindow() -> UIWindow!{
-        let windows = UIApplication.sharedApplication().windows
+        let windows = UIApplication.shared.windows
         
-        for window in windows.reverse() {
+        for window in windows.reversed() {
             
-            if window.isKindOfClass(UIWindow.self)  && (CGRectEqualToRect(window.bounds, UIScreen.mainScreen().bounds)){
-            
+            if window.isKind(of: UIWindow.self)  && (window.bounds.equalTo(UIScreen.main.bounds)){
                return window
             }
         }
         
-        return UIApplication.sharedApplication().keyWindow!
+        return UIApplication.shared.keyWindow!
     }
     
     
-    
+    @discardableResult
     class func showMessage(message : String?,toView view : UIView?,withMode mode : LFProgressMode)->LFProgressHUD{
     
         let hud = hudInit(view: view, withMode: mode)
@@ -101,11 +100,12 @@ class LFProgressHUD: UIView {
         return hud
     }
     
+    @discardableResult
     class func showProgressHUDTo(view container : UIView?,progressMode mode : LFProgressMode) -> LFProgressHUD{
         
         switch mode {
         case .Text:
-            return showMessage("", toView: container, withMode: .IndicatorLarge)
+            return showMessage(message: "", toView: container, withMode: .IndicatorLarge)
         default:
             return hudInit(view: container, withMode: mode)
         }
@@ -115,15 +115,16 @@ class LFProgressHUD: UIView {
     class func hudInit(view container : UIView?,withMode mode : LFProgressMode)->LFProgressHUD{
     
         let innerContainer = container ?? lastWindow()
-        let hud = LFProgressHUD.init(withTrackColor: UIColor.whiteColor(), backGroundColor: UIColor.blackColor().colorWithAlphaComponent(0.5), progressMode: mode, containerView: innerContainer)
+        let hud = LFProgressHUD.init(withTrackColor: UIColor.white, backGroundColor: UIColor.black.withAlphaComponent(0.5), progressMode: mode, containerView: innerContainer)
         return hud
     }
     
     
+    @discardableResult
     class func hideForView(view : UIView?) ->Bool{
         
         let innerContainer = view ?? lastWindow()
-        let hud = hudForView(innerContainer)
+        let hud = hudForView(view: innerContainer)
         if let innerHud = hud{
             innerHud.removeFromSuperview()
             return true
@@ -134,7 +135,7 @@ class LFProgressHUD: UIView {
     
     class func hudForView(view : UIView?) ->LFProgressHUD?{
     
-       let subViews = view?.subviews.reverse()
+        let subViews = view?.subviews.reversed()
         guard let wappedSubViews = subViews else{
            return nil
         }
@@ -150,7 +151,7 @@ class LFProgressHUD: UIView {
     
     init(withTrackColor : UIColor,backGroundColor backColor : UIColor,progressMode mode : LFProgressMode,containerView container : UIView!){
         
-        super.init(frame: CGRectZero)
+        super.init(frame: .zero)
         self.trackColor = withTrackColor
         self.backGroundColor = backColor
         self.progressMode = mode
@@ -175,7 +176,7 @@ class LFProgressHUD: UIView {
         case .Indicater:  indicaterView()
         case .IndicatorLarge: indicatorLargeView()
         case .Text : text()
-        case .Custom(let customView): self.customView(customView)
+        case .Custom(let customView): self.customView(view: customView)
         }
         
         indicatorView?.translatesAutoresizingMaskIntoConstraints = false
@@ -184,11 +185,11 @@ class LFProgressHUD: UIView {
     
     
     func setupLabel() {
-        promptLabel.font = UIFont.boldSystemFontOfSize(14)
+        promptLabel.font = UIFont.boldSystemFont(ofSize: 14)
         promptLabel.translatesAutoresizingMaskIntoConstraints = false
-        promptLabel.textAlignment = .Center
+        promptLabel.textAlignment = .center
         promptLabel.numberOfLines = 0
-        promptLabel.textColor = UIColor.whiteColor()
+        promptLabel.textColor = UIColor.white
         containerView.addSubview(promptLabel)
     }
     
@@ -201,32 +202,32 @@ class LFProgressHUD: UIView {
         }
         
         
-        sharpLayer.bounds = CGRectMake(0, 0, radius * 2 + 4, radius * 2 + 4)
+        sharpLayer.bounds = CGRect(x: 0, y: 0, width: radius * 2 + 4, height: radius * 2 + 4)
         
-       let layerCenter = CGPointMake(sharpLayer.bounds.size.width * 0.5, sharpLayer.bounds.size.height * 0.5)
-       let center = CGPointMake(progressLeft + layerCenter.x, ProgressTop + layerCenter.y)
+       let layerCenter = CGPoint(x: sharpLayer.bounds.size.width * 0.5, y: sharpLayer.bounds.size.height * 0.5)
+        let center = CGPoint(x:progressLeft + layerCenter.x, y:ProgressTop + layerCenter.y)
         sharpLayer.position = center
         containerView.layer.addSublayer(sharpLayer)
 //        sharpLayer.backgroundColor = UIColor.yellowColor().CGColor
      
-       let bezierPath = UIBezierPath(arcCenter: layerCenter, radius: radius, startAngle: CGFloat(M_PI_2 * 3), endAngle: CGFloat(M_PI * 7 / 4), clockwise: false)
+       let bezierPath = UIBezierPath(arcCenter: layerCenter, radius: radius, startAngle: CGFloat.pi / 2 * 3, endAngle: CGFloat.pi * 7 / 4, clockwise: false)
 
         sharpLayer.fillColor = nil
         sharpLayer.lineCap = kCALineCapRound
         sharpLayer.lineWidth = 4.5
         
-        sharpLayer.path = bezierPath.CGPath
+        sharpLayer.path = bezierPath.cgPath
         
 
         let animate = CABasicAnimation(keyPath: "transform.rotation.z")
         animate.fromValue = 0
-        animate.toValue = CGFloat(M_PI)
+        animate.toValue = CGFloat.pi
         animate.duration = 0.75
         animate.repeatCount = Float.infinity
-        animate.cumulative = true
+        animate.isCumulative = true
 //        animate.removeOnCompletion = false
         
-        sharpLayer.addAnimation(animate, forKey: "rotation")
+        sharpLayer.add(animate, forKey: "rotation")
     }
     
     func indicaterView(){
@@ -236,7 +237,7 @@ class LFProgressHUD: UIView {
             sharpLayer.removeFromSuperlayer()
         }
         
-        indicatorView = UIActivityIndicatorView(activityIndicatorStyle: .White)
+        indicatorView = UIActivityIndicatorView(activityIndicatorStyle: .white)
         
         if let wapped = indicatorView as? UIActivityIndicatorView{
             containerView.addSubview(wapped)
@@ -251,7 +252,7 @@ class LFProgressHUD: UIView {
             sharpLayer.removeFromSuperlayer()
         }
         
-        indicatorView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        indicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         if let wapped = indicatorView as? UIActivityIndicatorView{
             containerView.addSubview(wapped)
             wapped.startAnimating()
@@ -293,21 +294,21 @@ class LFProgressHUD: UIView {
         
         self.removeConstraints(self.constraints)
         containerView.removeConstraints(containerView.constraints)
-        promptLabel.hidden = !(promptLabel.text?.characters.count > 0)
+        promptLabel.isHidden = !((promptLabel.text?.count ?? 0) > 0)
 
-        var size = CGSizeZero
+        var size = CGSize.zero
         var labelHeightConstraints : NSLayoutConstraint?
         var labelWidth : CGFloat = 0
         
-        if !promptLabel.hidden {
+        if !promptLabel.isHidden {
             //根据文字计算宽高
-            size = promptLabel.sizeThatFits(CGSizeMake(self.frame.width - infoLabelLeft - infoLabelRight, 60))
-            let labelLayoutH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-(infoLabelLeft)-[promptLabel]-(infoLabelRight)-|", options: [], metrics: ["infoLabelLeft" : infoLabelLeft,"infoLabelRight" : infoLabelRight], views: ["promptLabel" : promptLabel])
+            size = promptLabel.sizeThatFits(CGSize(width: self.frame.width - infoLabelLeft - infoLabelRight, height:60))
+            let labelLayoutH = NSLayoutConstraint.constraints(withVisualFormat: "H:|-(infoLabelLeft)-[promptLabel]-(infoLabelRight)-|", options: [], metrics: ["infoLabelLeft" : infoLabelLeft,"infoLabelRight" : infoLabelRight], views: ["promptLabel" : promptLabel])
             labelWidth = size.width
             let height = size.height
 
-            labelHeightConstraints = NSLayoutConstraint.init(item: promptLabel, attribute: .Height, relatedBy: .Equal, toItem: containerView, attribute: .Height, multiplier: 0, constant: height)
-            let labelBottom = NSLayoutConstraint.init(item: promptLabel, attribute: .Bottom, relatedBy: .Equal, toItem: containerView, attribute: .Bottom, multiplier: 1, constant: -infoLableBottom)
+            labelHeightConstraints = NSLayoutConstraint.init(item: promptLabel, attribute: .height, relatedBy: .equal, toItem: containerView, attribute: .height, multiplier: 0, constant: height)
+            let labelBottom = NSLayoutConstraint.init(item: promptLabel, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1, constant: -infoLableBottom)
             
             containerView.addConstraints(labelLayoutH)
             containerView.addConstraints([labelHeightConstraints!,labelBottom])
@@ -338,44 +339,44 @@ class LFProgressHUD: UIView {
             }
         }
         
-        var  viewDic : [String : UIView] = promptLabel.hidden ? [:] : ["bottomView" : promptLabel]
+        var  viewDic : [String : UIView] = promptLabel.isHidden ? [:] : ["bottomView" : promptLabel]
         
-        let vlf = promptLabel.hidden ? "V:|-(ProgressTop)-[view]-(ProgressTop)-|" : "V:|-(infoLableBottom)-[view]-(6)-[bottomView]-|"
+        let vlf = promptLabel.isHidden ? "V:|-(ProgressTop)-[view]-(ProgressTop)-|" : "V:|-(infoLableBottom)-[view]-(6)-[bottomView]-|"
         switch self.progressMode {
         case .Circle:
 
-            sizeWithView(sharpLayer)
+            sizeWithView(anyView: sharpLayer)
 
             if let _ = labelHeightConstraints{
-                sharpLayer.position = CGPointMake(containerWidth * 0.5, containerHeight * 0.5 - progressMiddle)
+                sharpLayer.position = CGPoint(x:containerWidth * 0.5, y:containerHeight * 0.5 - progressMiddle)
             }
 
         case .Indicater,.IndicatorLarge:
             guard let view = indicatorView else{
                return
             }
-            let indicaterH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-(progressLeft)-[view]-(progressRight)-|", options: [], metrics: ["progressLeft" : progressLeft,"progressRight" : progressRight], views: ["view" : view])
+            let indicaterH = NSLayoutConstraint.constraints(withVisualFormat: "H:|-(progressLeft)-[view]-(progressRight)-|", options: [], metrics: ["progressLeft" : progressLeft,"progressRight" : progressRight], views: ["view" : view])
             viewDic.updateValue(view, forKey: "view")
         
-            var indicaterV = NSLayoutConstraint.constraintsWithVisualFormat(vlf, options: [], metrics: ["ProgressTop" : ProgressTop,"progressMiddle" : progressMiddle,"infoLableBottom" : infoLableBottom], views: viewDic)
+            var indicaterV = NSLayoutConstraint.constraints(withVisualFormat: vlf, options: [], metrics: ["ProgressTop" : ProgressTop,"progressMiddle" : progressMiddle,"infoLableBottom" : infoLableBottom], views: viewDic)
      
             indicaterV.removeLast()
             containerView.addConstraints(indicaterH)
             containerView.addConstraints(indicaterV)
 
-            sizeWithView(view)
+            sizeWithView(anyView: view)
             
         case .Text:
-            sizeWithView(promptLabel)
+            sizeWithView(anyView: promptLabel)
         case .Custom(let view):
             
-            sizeWithView(view)
+            sizeWithView(anyView: view)
             let left = (containerWidth - view.bounds.width) * 0.5
-            let customViewH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-(left)-[view]-(left)-|", options: [], metrics: ["left" : left], views: ["view" : view])
+            let customViewH = NSLayoutConstraint.constraints(withVisualFormat: "H:|-(left)-[view]-(left)-|", options: [], metrics: ["left" : left], views: ["view" : view])
             
             viewDic.updateValue(view, forKey: "view")
             let height = view.bounds.height
-            let customViewV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-(ProgressTop)-[view(height)]", options: [], metrics: ["ProgressTop" : ProgressTop,"height" : height], views: viewDic)
+            let customViewV = NSLayoutConstraint.constraints(withVisualFormat: "V:|-(ProgressTop)-[view(height)]", options: [], metrics: ["ProgressTop" : ProgressTop,"height" : height], views: viewDic)
             
             containerView.addConstraints(customViewH)
             containerView.addConstraints(customViewV)
@@ -385,10 +386,10 @@ class LFProgressHUD: UIView {
         }
 
         //container
-        let centerXLayout = NSLayoutConstraint.init(item: containerView, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1, constant: 0)
-        let centerYLayout = NSLayoutConstraint.init(item: containerView, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1, constant: 0)
-        let widthLayout  = NSLayoutConstraint.init(item: containerView, attribute: .Width, relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 0, constant: containerWidth)
-        let heightLayout  = NSLayoutConstraint.init(item: containerView, attribute: .Height, relatedBy: .Equal, toItem: self, attribute:.Height, multiplier: 0, constant: containerHeight)
+        let centerXLayout = NSLayoutConstraint.init(item: containerView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)
+        let centerYLayout = NSLayoutConstraint.init(item: containerView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
+        let widthLayout  = NSLayoutConstraint.init(item: containerView, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 0, constant: containerWidth)
+        let heightLayout  = NSLayoutConstraint.init(item: containerView, attribute: .height, relatedBy: .equal, toItem: self, attribute:.height, multiplier: 0, constant: containerHeight)
         self.addConstraints([centerXLayout,centerYLayout,widthLayout,heightLayout])
         
         super.updateConstraints()

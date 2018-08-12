@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -14,85 +18,85 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VST-xb-Ffg">
-                                <rect key="frame" x="177" y="149" width="247" height="53"/>
-                                <color key="backgroundColor" red="0.83137254900000002" green="0.83137254900000002" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="64" y="149" width="247" height="53"/>
+                                <color key="backgroundColor" red="0.83137254900000002" green="0.83137254900000002" blue="0.83137254900000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="6aT-4r-DbF"/>
                                     <constraint firstAttribute="width" constant="247" id="CdU-Us-V52"/>
                                 </constraints>
                                 <state key="normal" title="showLargeIndicator"/>
                                 <connections>
-                                    <action selector="largeIndicator:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sUc-zs-aBa"/>
+                                    <action selector="largeIndicatorWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="A3f-XF-nOJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fXZ-w6-flN">
-                                <rect key="frame" x="177" y="232" width="247" height="53"/>
-                                <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="64" y="232" width="247" height="53"/>
+                                <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="QoI-N9-cj5"/>
                                     <constraint firstAttribute="width" constant="247" id="gEm-Pu-1Ew"/>
                                 </constraints>
                                 <state key="normal" title="showText"/>
                                 <connections>
-                                    <action selector="text:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8hX-rf-VQ1"/>
+                                    <action selector="textWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mtr-Q5-A4e"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qKa-FF-Azy">
-                                <rect key="frame" x="177" y="398" width="247" height="53"/>
-                                <color key="backgroundColor" red="0.23529411759999999" green="0.59215686270000001" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="64" y="398" width="247" height="53"/>
+                                <color key="backgroundColor" red="0.23529411759999999" green="0.59215686270000001" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="mct-sR-2wy"/>
                                     <constraint firstAttribute="width" constant="247" id="vjg-av-28V"/>
                                 </constraints>
-                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.3333333432674408" green="0.3333333432674408" blue="0.3333333432674408" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="showCustom"/>
                                 <connections>
-                                    <action selector="custom:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WWV-oe-CyU"/>
+                                    <action selector="customWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BtM-A1-NTs"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uHl-KX-n0V">
-                                <rect key="frame" x="177" y="315" width="247" height="53"/>
-                                <color key="backgroundColor" red="0.95686274510000002" green="0.96078431369999995" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="64" y="315" width="247" height="53"/>
+                                <color key="backgroundColor" red="0.95686274510000002" green="0.96078431369999995" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="KVo-i7-Uji"/>
                                     <constraint firstAttribute="width" constant="247" id="ey4-OM-g3x"/>
                                 </constraints>
                                 <state key="normal" title="showCircle"/>
                                 <connections>
-                                    <action selector="circle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ywD-Ns-2LA"/>
+                                    <action selector="circleWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="q6r-dK-MAH"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pgN-3D-DIO">
-                                <rect key="frame" x="177" y="481" width="247" height="53"/>
-                                <color key="backgroundColor" red="0.23529411759999999" green="0.59215686270000001" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="64" y="481" width="247" height="53"/>
+                                <color key="backgroundColor" red="0.23529411759999999" green="0.59215686270000001" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="LAW-Aa-Gns"/>
                                     <constraint firstAttribute="width" constant="247" id="TaD-gZ-2bF"/>
                                 </constraints>
-                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.3333333432674408" green="0.3333333432674408" blue="0.3333333432674408" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="showWithInfo"/>
                                 <connections>
-                                    <action selector="info:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cs0-Cg-S0q"/>
+                                    <action selector="infoWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TNd-Nn-BNO"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sJc-tv-vYU">
-                                <rect key="frame" x="177" y="66" width="247" height="53"/>
-                                <color key="backgroundColor" red="0.49019607840000001" green="0.74117647060000003" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="64" y="66" width="247" height="53"/>
+                                <color key="backgroundColor" red="0.49019607840000001" green="0.74117647060000003" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="247" id="95r-uO-ZX8"/>
                                     <constraint firstAttribute="height" constant="53" id="oLt-5J-pwS"/>
                                 </constraints>
                                 <state key="normal" title="showIndicator"/>
                                 <connections>
-                                    <action selector="indicator:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1ix-Yf-GKe"/>
+                                    <action selector="indicatorWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pYw-RB-2Bf"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="qKa-FF-Azy" firstAttribute="top" secondItem="uHl-KX-n0V" secondAttribute="bottom" constant="30" id="03i-Kd-8Pw"/>
                             <constraint firstItem="VST-xb-Ffg" firstAttribute="centerX" secondItem="sJc-tv-vYU" secondAttribute="centerX" id="3gm-np-nBX"/>
