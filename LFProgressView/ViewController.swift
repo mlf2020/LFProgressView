@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  LFProgressView
 //
-//  Created by XieLibin on 16/6/3.
+//  Created by Menglingfeng on 16/6/3.
 //  Copyright © 2016年 Menglingfeng. All rights reserved.
 //
 
